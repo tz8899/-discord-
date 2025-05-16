@@ -12,4 +12,4 @@ pip install requests
 
 #YOUR_PUSHOVER_API_TOKEN    Pushover的api
 
-python3 discord.py    运行
+python3 my_discord_bot.py    运行
