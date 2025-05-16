@@ -1,3 +1,9 @@
+安装库
+pip install python-pushover
+
+
+
+
 #USER_ID_TO_MONITOR  改成需要监控的dis id
 
 #YOUR_BOT_TOKEN      你的discord账户的token
