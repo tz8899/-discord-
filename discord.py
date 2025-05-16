@@ -1,10 +1,13 @@
+import discord
+import requests
+
 # Discord Bot的Token，用于验证和连接到Discord API
-TOKEN = 'YOUR_BOT_TOKEN'
+TOKEN = '你的dc token'
 # 要监控的用户的Discord ID
-USER_ID_TO_MONITOR = 需要监控的discord的id
+USER_ID_TO_MONITOR = 被监控的dc id
 # Pushover的用户密钥和API令牌，用于发送推送通知
-PUSHOVER_USER_KEY = 'YOUR_PUSHOVER_USER_KEY'
-PUSHOVER_API_TOKEN = 'YOUR_PUSHOVER_API_TOKEN'
+PUSHOVER_USER_KEY = '你的key'
+PUSHOVER_API_TOKEN = '你的api'
 
 # 自定义客户端类，继承自discord.Client
 class MyClient(discord.Client):
@@ -18,10 +21,22 @@ class MyClient(discord.Client):
         if message.author.id == USER_ID_TO_MONITOR:
             # 打印用户的名字和消息内容
             print(f'{message.author.name} said: {message.content}')
-            # 创建Pushover客户端实例
-            pushover_client = PushoverClient(PUSHOVER_USER_KEY, api_token=PUSHOVER_API_TOKEN)
-            # 发送推送通知，包含用户的名字和消息内容
-            pushover_client.send_message(f'{message.author.name} said: {message.content}', title='Discord Message Alert')
+            # 发送推送通知
+            self.send_pushover_message(f'{message.author.name} said: {message.content}')
+
+    def send_pushover_message(self, message, title="Discord Message Alert"):
+        url = "https://api.pushover.net/1/messages.json"
+        data = {
+            "token": PUSHOVER_API_TOKEN,
+            "user": PUSHOVER_USER_KEY,
+            "message": message,
+            "title": title
+        }
+        response = requests.post(url, data=data)
+        if response.status_code == 200:
+            print("Notification sent successfully.")
+        else:
+            print("Failed to send notification.")
 
 # 创建客户端实例并运行
 client = MyClient()
