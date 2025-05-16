@@ -11,3 +11,5 @@ pip install requests
 #YOUR_PUSHOVER_USER_KEY     Pushover的key      直接安卓或者ios上面下载Pushover
 
 #YOUR_PUSHOVER_API_TOKEN    Pushover的api
+
+python3 discord.py    运行
