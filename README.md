@@ -1,7 +1,7 @@
 安装库
 pip install python-pushover
 
-
+pip install requests
 
 
 #USER_ID_TO_MONITOR  改成需要监控的dis id
