@@ -39,5 +39,5 @@ class MyClient(discord.Client):
             print("Failed to send notification.")
 
 # 创建客户端实例并运行
-client = MyClient()
+client = MyClient(intents=intents)
 client.run(TOKEN)  # 使用Bot的Token连接到Discord
